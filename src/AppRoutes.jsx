@@ -6,6 +6,7 @@ import { InitOutlet } from "./outlets/init"
 import { PrivateOutlet } from "./outlets/private"
 import { Login } from "./pages/Login/Login"
 import { HomePage } from "./pages/HomePage/HomePage"
+import { BoardPage } from "./pages/HomePage/components/BoardPage/BoardPage"
 
 export const AppRoutes = () => {
     return (
@@ -17,6 +18,7 @@ export const AppRoutes = () => {
                     </Route>
                     <Route element={<PrivateOutlet />} >
                         <Route path="/" element={<HomePage />} />
+                        <Route path="/board/:slug" element={<BoardPage />} />
                     </Route>
                 </Route>
             </Routes>

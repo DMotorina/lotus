@@ -1,25 +1,37 @@
-import {BoardCard} from './components/BoardCard/BoardCard'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-const boards = [
-    { slug: 1, name: 'Board #1' },
-    { slug: 2, name: 'Board #2' },
-    { slug: 3, name: 'Board #3' }
-]
+import {loadingBoards} from "../../../../store/actions/boardAction.js"
+import { useNavigate} from 'react-router-dom';
+
+import { BoardCard } from './components/BoardCard/BoardCard'
+import { AddBoard } from './components/AddBoard/AddBoard.jsx'
 
 export const BoardCards = () => {
-    const handleOnClick = (slug, name) => {
-        alert(name)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const boards = useSelector((state) => state.board.list)
+    const loading = useSelector((state) => state.board.loadingBoard)
+
+    useEffect(() => {
+        dispatch(loadingBoards())
+    }, [dispatch])
+
+    if (loading) {
+        return <h1>Loading...</h1>
     }
 
     return (
-        <div>
+        <>
             {boards.map(({slug, name}) => (
                 <BoardCard 
                     key={slug}
                     name={name}
-                    onClick={() => handleOnClick(slug, name)}
+                    onClick={() => navigate(`/board/${slug}`)}
                 />
             ))}
-        </div>
+            <AddBoard />
+        </>
     )
 }

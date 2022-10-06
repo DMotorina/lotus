@@ -3,7 +3,7 @@ import { StyledEngineProvider } from '@mui/material/styles';
 
 import { Provider } from 'react-redux';
 
-import {store} from './store';
+import {store} from './store/store.js';
 
 import { AppRoutes } from './AppRoutes';
 

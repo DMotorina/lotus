@@ -16,13 +16,13 @@ export const Login = () => {
         dispatch(login({email, password}))
     }, [dispatch])
 
-    // if (loading) {
-    //     return <h1>Loading...</h1>
-    // }
+    if (loading) {
+        return <h1>Loading...</h1>
+    }
 
     return (
         <div className="div-login">
-            <Link to="/login"><img className="logo" src="Lotus-logo.svg" width="200" height="250"/></Link>
+            <Link to="/login"><img className="logo-login" src="Lotus-logo.svg" width="200" height="250"/></Link>
             {error ? <p className="error-message"> {error} </p> : null}
             <LoginForm onSubmit={onSubmit} />
         </div>

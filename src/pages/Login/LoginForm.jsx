@@ -17,7 +17,7 @@ export const LoginForm = ({onSubmit}) => {
     }, [email, password])
 
     return (
-        <form>
+        <form className="login-form">
             <input
                 type="email" 
                 id="email"

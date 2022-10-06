@@ -4,7 +4,6 @@ import { login, checkAuth, logout } from "../actions/userActions"
 const initialState = {
     isAuthChecked: false,
     loginLoading: false,
-    boards: null,
     error: null,
     data: null
 }
@@ -38,7 +37,5 @@ const userSlice = createSlice({
         },
     }    
 })
-
-export const {setUser, removeUser} = userSlice.actions;
 
 export default userSlice.reducer;

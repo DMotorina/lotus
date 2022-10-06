@@ -1,5 +1,3 @@
-import './ToolBar.sass'
-
 import { useState, useRef } from 'react'
 
 import { UserAvatar } from "../../../../ui/UserAvatar/UserAvatar"
