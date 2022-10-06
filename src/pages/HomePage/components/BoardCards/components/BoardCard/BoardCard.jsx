@@ -7,18 +7,18 @@ import { CardActionArea } from '@mui/material';
 
 export const BoardCard = ({name, onClick}) => {
 
-    const boardStyleBackgroundColor = `rgb(${getRandom(0, 255)}, ${getRandom(0, 255)}, ${getRandom(0, 255)})`;
+    // const boardStyleBackgroundColor = `rgb(${getRandom(0, 255)}, ${getRandom(0, 255)}, ${getRandom(0, 255)})`;
 
-    function getRandom(min, max) {
-        return Math.ceil(Math.random() * (max - min) + min)
-    }
+    // function getRandom(min, max) {
+    //     return Math.ceil(Math.random() * (max - min) + min)
+    // }
 
     return (
         <Card
             onClick={() => onClick()}
             className="card-style"
         >
-            <CardActionArea sx={{width: '100%', height: '100%', bgcolor: boardStyleBackgroundColor}}>
+            <CardActionArea sx={{width: '100%', height: '100%'}}>
                 <CardContent>
                     <Typography variant="h5" component="div">{name}</Typography>
                 </CardContent>

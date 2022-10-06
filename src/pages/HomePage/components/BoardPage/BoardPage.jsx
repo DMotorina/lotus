@@ -1,12 +1,19 @@
-import { useParams } from "react-router-dom";
+import './BoardPage.sass'
+
+import { Toolbar } from '../Toolbar/ToolBar'
+import { BoardList } from './BoardList'
+
+import { useParams } from "react-router-dom"
 
 export const BoardPage = () => {
     const params = useParams()
 
+    document.title = `${params.slug}`
+
     return (
-        <div>
-            <h1>Hello!</h1>
-            <h2>slug URL: {params.slug}</h2>
-        </div>
+        <>
+            <Toolbar />
+            <BoardList />
+        </>
     )
 }
