@@ -12,6 +12,7 @@ export const BoardCards = () => {
     const dispatch = useDispatch()
 
     const boards = useSelector((state) => state.board.list)
+
     const loading = useSelector((state) => state.board.loadingBoard)
 
     useEffect(() => {
@@ -21,6 +22,9 @@ export const BoardCards = () => {
     if (loading) {
         return <h1>Loading...</h1>
     }
+
+    console.log("--boards", boards)
+
 
     return (
         <>

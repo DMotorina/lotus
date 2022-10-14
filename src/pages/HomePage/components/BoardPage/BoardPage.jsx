@@ -1,7 +1,8 @@
 import './BoardPage.sass'
 
-import { Toolbar } from '../Toolbar/ToolBar'
-import { BoardList } from './BoardList'
+import { Toolbar } from '../../../../ui/Toolbar/ToolBar'
+import { Cards } from './Cards'
+import { AddList } from './AddList'
 
 import { useParams } from "react-router-dom"
 
@@ -13,7 +14,10 @@ export const BoardPage = () => {
     return (
         <>
             <Toolbar />
-            <BoardList />
+            <div className='boards-list-content'>
+                <Cards />
+                <AddList />
+            </div>
         </>
     )
 }

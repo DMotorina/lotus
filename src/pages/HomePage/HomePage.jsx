@@ -1,6 +1,6 @@
 import './HomePage.sass'
 
-import { Toolbar } from './components/Toolbar/ToolBar'
+import { Toolbar } from '../../ui/Toolbar/ToolBar'
 import { BoardCards } from './components/BoardCards/BoardCards'
 
 export const HomePage = () => {

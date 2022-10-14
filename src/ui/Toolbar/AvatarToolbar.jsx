@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 
-import { UserAvatar } from "../../../../ui/UserAvatar/UserAvatar"
+import { UserAvatar } from "../UserAvatar/UserAvatar"
 import { ToolbarMenu } from './ToolbarMenu'
 
 import Box from '@mui/material/Box'
