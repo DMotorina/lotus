@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import {loadingBoards} from "../../../../store/actions/boardAction.js"
 import { useNavigate} from 'react-router-dom';
 
-import { BoardCard } from './components/BoardCard/BoardCard'
-import { AddBoard } from './components/AddBoard/AddBoard.jsx'
+import { BoardCard } from './BoardCard/BoardCard'
+import { CreateBoard } from './CreateBoard/CreateBoard.jsx'
 
-export const BoardCards = () => {
+export const Boards = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -35,7 +35,7 @@ export const BoardCards = () => {
                     onClick={() => navigate(`/board/${slug}`)}
                 />
             ))}
-            <AddBoard />
+            <CreateBoard />
         </>
     )
 }

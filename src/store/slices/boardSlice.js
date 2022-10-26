@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loadingBoards, createBoards, loadingCards, createCards, loadingLists, createLists } from "../actions/boardAction";
+import { loadingBoards, createBoards, createCards, fetchBoardData, createLists } from "../actions/boardAction";
 
 const initialState = {
     loadingBoard: false,
-    loadingCards: false,
-    loadingLists: false,
+    fetchCards: false,
+    fetchLists: false,
     error: {},
     list: [],
     card: [],
@@ -35,16 +35,6 @@ const boardSlice = createSlice({
         [createBoards.rejected]: (state, {payload}) => {
             state.error = payload
         },
-        [loadingCards.pending]: (state) => {
-            state.loadingCards = true
-        },
-        [loadingCards.fulfilled]: (state, { payload }) => {
-            state.loadingCards = false
-            state.card = payload
-        },
-        [loadingCards.rejected]: (state) => {
-            state.loadingCards = false
-        },
         [createCards.pending]: (state) => {
             state.error = {}
         },
@@ -54,15 +44,16 @@ const boardSlice = createSlice({
         [createCards.rejected]: (state, {payload}) => {
             state.error = payload
         },
-        [loadingLists.pending]: (state) => {
-            state.loadingLists = true
+        [fetchBoardData.pending]: (state) => {
+            state.fetchLists = true
         },
-        [loadingLists.fulfilled]: (state, { payload }) => {
-            state.loadingLists = false
-            state.lists = payload
+        [fetchBoardData.fulfilled]: (state, { payload }) => {
+            state.fetchLists = false
+            state.lists = payload.lists
+            // console.log("--payload", payload)  
         },
-        [loadingLists.rejected]: (state) => {
-            state.loadingLists = false
+        [fetchBoardData.rejected]: (state) => {
+            state.fetchLists = false
         },
         [createLists.pending]: (state) => {
             state.error = {}

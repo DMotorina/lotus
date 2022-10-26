@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import {createBoards} from "../../../../../../store/actions/boardAction.js"
+import {createBoards} from "../../../../../store/actions/boardAction.js"
 
 import Button from '@mui/material/Button'
 
-import { DialogForm } from './DialogForm.jsx'
+import { FormCreateBoard } from './FormCreateBoard.jsx'
 
-export const AddBoard = () => {
+export const CreateBoard = () => {
   const navigate = useNavigate()
 
   const { error } = useSelector((state) => state.board)
@@ -42,7 +42,7 @@ export const AddBoard = () => {
   return (
     <>
       <Button variant="outlined" onClick={handleClickOpen}> Create board </Button>
-      <DialogForm 
+      <FormCreateBoard 
         error={error} 
         open={open} 
         onChangeText={onChangeText} 

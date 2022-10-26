@@ -7,12 +7,6 @@ import { CardActionArea } from '@mui/material';
 
 export const BoardCard = ({name, onClick}) => {
 
-    // const boardStyleBackgroundColor = `rgb(${getRandom(0, 255)}, ${getRandom(0, 255)}, ${getRandom(0, 255)})`;
-
-    // function getRandom(min, max) {
-    //     return Math.ceil(Math.random() * (max - min) + min)
-    // }
-
     return (
         <Card
             onClick={() => onClick()}

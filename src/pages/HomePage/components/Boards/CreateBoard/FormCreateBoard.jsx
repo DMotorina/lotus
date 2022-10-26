@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 
-export const DialogForm = ({handleClose, onChangeText, error, text, handleAdd, open}) => {
+export const FormCreateBoard = ({handleClose, onChangeText, error, text, handleAdd, open}) => {
     return (
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Board's name</DialogTitle>

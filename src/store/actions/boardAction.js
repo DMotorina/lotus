@@ -8,7 +8,7 @@ const config = {
 }
 
 export const loadingBoards = createAsyncThunk(
-    'user/loadingBoards',
+    'board/loadingBoards',
     async (_, {rejectWithValue}) => {
         try {
             const resonse = await httpClient.get(
@@ -23,7 +23,7 @@ export const loadingBoards = createAsyncThunk(
 )
 
 export const createBoards = createAsyncThunk(
-    'user/createBoards',
+    'board/createBoards',
     async ({name}, {rejectWithValue}) => {
         // Custom validation can be added there. Example:
         if (!name.length) {
@@ -43,23 +43,66 @@ export const createBoards = createAsyncThunk(
     }
 )
 
-export const loadingCards = createAsyncThunk(
-    'user/loadingCards',
-    async (_, {rejectWithValue}) => {
-        try {
-            const resonse = await httpClient.get(
-                '/api/cards/',
-                config
-            )
-            return resonse.data
-        } catch (error) {
-            return rejectWithValue()
+const fetchLists = async (boardSlug) => {
+    try {
+        const resonse = await httpClient.get(
+            `/api/lists/?board=${boardSlug}`,
+            config
+        )
+        return resonse.data
+    } catch (error) {
+        return []
+    }
+}
+
+const fetchCards = async (boardSlug) => {
+    try {
+        const resonse = await httpClient.get(
+            '/api/cards/', // TODO: board filter
+            config
+        )
+        return resonse.data
+    } catch (error) {
+        return []
+    }
+}
+
+export const fetchBoardData = createAsyncThunk(
+    'board/fetchBoardData',
+    async ({boardSlug}, {rejectWithValue}) => {
+        // load board there
+        const lists = await fetchLists(boardSlug)
+        const cards = await fetchCards(boardSlug)
+
+        const newLists = lists.map(list => ({
+            ...list, 
+            cards: cards.filter((card) => card.list === list.slug)
+        }))
+
+        return {
+            // + board info
+            lists: newLists
         }
     }
 )
 
+// export const loadingCards = createAsyncThunk(
+//     'board/loadingCards',
+//     async (_, {rejectWithValue}) => {
+//         try {
+//             const resonse = await httpClient.get(
+//                 '/api/cards/',
+//                 config
+//             )
+//             return resonse.data
+//         } catch (error) {
+//             return rejectWithValue()
+//         }
+//     }
+// )
+
 export const createCards = createAsyncThunk(
-    'user/createCards',
+    'board/createCards',
     async ({name, description, list}, {rejectWithValue}) => {
 
         try {
@@ -75,23 +118,23 @@ export const createCards = createAsyncThunk(
     }
 )
 
-export const loadingLists = createAsyncThunk(
-    'user/loadingLists',
-    async (_, {rejectWithValue}) => {
-        try {
-            const resonse = await httpClient.get(
-                '/api/lists/',
-                config
-            )
-            return resonse.data
-        } catch (error) {
-            return rejectWithValue()
-        }
-    }
-)
+// export const loadingLists = createAsyncThunk(
+//     'board/loadingLists',
+//     async (_, {rejectWithValue}) => {
+//         try {
+//             const resonse = await httpClient.get(
+//                 '/api/lists/',
+//                 config
+//             )
+//             return resonse.data
+//         } catch (error) {
+//             return rejectWithValue()
+//         }
+//     }
+// )
 
 export const createLists = createAsyncThunk(
-    'user/createLists',
+    'board/createLists',
     async ({slug, name, board}, {rejectWithValue}) => {
 
         try {
