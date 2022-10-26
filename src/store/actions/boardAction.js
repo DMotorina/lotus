@@ -7,42 +7,6 @@ const config = {
     },
 }
 
-export const loadingBoards = createAsyncThunk(
-    'board/loadingBoards',
-    async (_, {rejectWithValue}) => {
-        try {
-            const resonse = await httpClient.get(
-                '/api/boards/',
-                config
-            )
-            return resonse.data
-        } catch (error) {
-            return rejectWithValue()
-        }
-    }
-)
-
-export const createBoards = createAsyncThunk(
-    'board/createBoards',
-    async ({name}, {rejectWithValue}) => {
-        // Custom validation can be added there. Example:
-        if (!name.length) {
-            return rejectWithValue({name: "Name shouldn't be empty"})
-        }
-
-        try {
-            const resonse = await httpClient.post(
-                '/api/boards/',
-                {name},
-                config
-            )
-            return resonse.data
-        } catch (error) {
-            return rejectWithValue(error.response.data)
-        }
-    }
-)
-
 const fetchLists = async (boardSlug) => {
     try {
         const resonse = await httpClient.get(
@@ -58,7 +22,7 @@ const fetchLists = async (boardSlug) => {
 const fetchCards = async (boardSlug) => {
     try {
         const resonse = await httpClient.get(
-            '/api/cards/', // TODO: board filter
+            `/api/cards/?board=${boardSlug}`,
             config
         )
         return resonse.data
@@ -86,21 +50,6 @@ export const fetchBoardData = createAsyncThunk(
     }
 )
 
-// export const loadingCards = createAsyncThunk(
-//     'board/loadingCards',
-//     async (_, {rejectWithValue}) => {
-//         try {
-//             const resonse = await httpClient.get(
-//                 '/api/cards/',
-//                 config
-//             )
-//             return resonse.data
-//         } catch (error) {
-//             return rejectWithValue()
-//         }
-//     }
-// )
-
 export const createCards = createAsyncThunk(
     'board/createCards',
     async ({name, description, list}, {rejectWithValue}) => {
@@ -117,21 +66,6 @@ export const createCards = createAsyncThunk(
         }
     }
 )
-
-// export const loadingLists = createAsyncThunk(
-//     'board/loadingLists',
-//     async (_, {rejectWithValue}) => {
-//         try {
-//             const resonse = await httpClient.get(
-//                 '/api/lists/',
-//                 config
-//             )
-//             return resonse.data
-//         } catch (error) {
-//             return rejectWithValue()
-//         }
-//     }
-// )
 
 export const createLists = createAsyncThunk(
     'board/createLists',

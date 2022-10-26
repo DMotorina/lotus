@@ -1,10 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./slices/userSlice";
-import boardReducer from "./slices/boardSlice";
+import { configureStore } from "@reduxjs/toolkit"
+import userReducer from "./slices/userSlice"
+import boardReducer from "./slices/boardSlice"
+import dashboardReducer from "./slices/dashboardSlice"
 
 export const store = configureStore({
     reducer: {
         user: userReducer,
-        board: boardReducer
+        board: boardReducer,
+        dashboard: dashboardReducer
     }
 });

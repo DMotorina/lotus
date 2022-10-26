@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import {createBoards} from "../../../../../store/actions/boardAction.js"
+import { createBoards } from "../../../../../store/actions/dashboardAction.js"
 
 import Button from '@mui/material/Button'
 
@@ -11,7 +11,7 @@ import { FormCreateBoard } from './FormCreateBoard.jsx'
 export const CreateBoard = () => {
   const navigate = useNavigate()
 
-  const { error } = useSelector((state) => state.board)
+  const { error } = useSelector((state) => state.dashboard)
 
   const dispatch = useDispatch()
 
