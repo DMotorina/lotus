@@ -1,14 +1,11 @@
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
-export const CreateCard = () => {
-    const AddCardsClickHandler = () => {
-        alert("Wwork!")
-
-    }
-
+export const CreateCard = ({open, handleClickOpen, handleClose}) => {
     return (
-        <>                
-            <Button variant="text" className='button-list' onClick={AddCardsClickHandler}>Add card</Button>
+        <>
+
         </>
     )
 }

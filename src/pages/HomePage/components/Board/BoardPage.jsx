@@ -1,4 +1,4 @@
-import './BoardRoot.sass'
+import './BoardPage.sass'
 
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'

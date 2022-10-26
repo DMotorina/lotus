@@ -43,4 +43,4 @@ const boardSlice = createSlice({
     }
 })
 
-export default boardSlice.reducer;
+export default boardSlice.reducer

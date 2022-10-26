@@ -1,24 +1,13 @@
-import '../BoardRoot.sass'
+import '../BoardPage.sass'
 
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
-import {createLists} from '../../../../../store/actions/boardAction.js'
-import { FormCreateList } from './FormCreateList'
-
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
 export const CreateList = () => {
-  const dispatch = useDispatch()
-
-  const { error } = useSelector((state) => state.board)
-
   const [open, setOpen] = useState(false)
-  const [text, setText] = useState("") 
-
-  const onChangeTextList = (event) => {  
-    setText(event.target.value)
-  }
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -28,20 +17,24 @@ export const CreateList = () => {
     setOpen(false)
   }
 
-  const handleAddList = (name) => {
-    dispatch(createLists({name: text}))
-  }
-
   return (
-      <>
-          <Button variant="outlined" className='button-add' onClick={handleClickOpen}> Add list </Button>
-          <FormCreateList
-              open={open}
-              handleClose={handleClose}
-              error={error} 
-              onChangeTextList={onChangeTextList}
-              handleAddList={handleAddList} 
-          />
+      <>  
+        {open 
+          ? (       
+            <Box component="span" sx={{ p: 2, border: '1px dashed grey' }}>
+              <TextField label="Enter list title" variant="outlined" />
+              <Button>Create</Button>
+              <Button onClick={handleClose}> Cancel </Button>      
+            </Box> 
+          ):(
+            <Button 
+                variant="outlined" 
+                className='button-add' 
+                onClick={handleClickOpen}
+            > 
+              Add list 
+            </Button>
+          )}
       </>
   )
 }
