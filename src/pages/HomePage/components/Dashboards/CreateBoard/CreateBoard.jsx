@@ -4,16 +4,16 @@ import { useNavigate } from 'react-router-dom'
 
 import { createBoards } from "../../../../../store/actions/dashboardAction.js"
 
-import Button from '@mui/material/Button'
-
 import { FormCreateBoard } from './FormCreateBoard.jsx'
+
+import Button from '@mui/material/Button'
 
 export const CreateBoard = () => {
   const navigate = useNavigate()
 
-  const { error } = useSelector((state) => state.dashboard)
-
   const dispatch = useDispatch()
+
+  const { error } = useSelector((state) => state.dashboard)
 
   const [open, setOpen] = useState(false)
   const [text, setText] = useState("") 

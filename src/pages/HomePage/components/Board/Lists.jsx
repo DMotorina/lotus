@@ -2,26 +2,32 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from "react-router-dom"
 
-import {Cards} from '../Cards/Cards'
-
-import { fetchBoardData } from '../../../../../store/actions/boardAction'
+import { fetchBoardData } from '../../../../store/actions/boardAction.js'
 
 import MUList from '@mui/material/List'
-import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import IconButton from '@mui/material/IconButton'
+import CommentIcon from '@mui/icons-material/Comment'
 
 export const Lists = () => {
     const { slug } = useParams()
-
-    const dispatch = useDispatch()
 
     const lists = useSelector((state) => state.board.lists)
     const loadingList = useSelector((state) => state.board.fetchLists)
 
     const [value, setValue] = useState("")
     const [open, setOpen] = useState(false)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchBoardData({boardSlug: slug}))
+    }, [dispatch])
 
     const handleClickOpen = () => {
         setOpen(true)
@@ -30,15 +36,10 @@ export const Lists = () => {
     const handleClose = () => {
         setOpen(false)
     }
-  
 
     const handleChange = (event) => {
       setValue(event.target.value)
     }
-
-    useEffect(() => {
-        dispatch(fetchBoardData({boardSlug: slug}))
-    }, [dispatch])
 
     if (loadingList) {
         return <h3>Loading...</h3>
@@ -54,8 +55,21 @@ export const Lists = () => {
                         value={name}
                         onChange={handleChange}
                     />
-                    <Cards cards={cards} key={slug}/>
-                    
+                    {cards.map(({slug, name}) => (
+                        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'transparent' }}>
+                            <ListItem
+                                key={slug}
+                                disableGutters
+                                secondaryAction={
+                                <IconButton aria-label="comment">
+                                    <CommentIcon />
+                                </IconButton>
+                                }
+                            >
+                                <ListItemText primary={`${name}`} />
+                            </ListItem>
+                        </List>
+                    ))}
                     {open 
                         ? (       
                             <Box component="span" sx={{ p: 1, border: '1px dashed grey' }}>
@@ -72,7 +86,6 @@ export const Lists = () => {
                             Add card 
                             </Button>
                     )}
-                
                 </MUList>
             ))}
         </>
