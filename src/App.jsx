@@ -1,11 +1,11 @@
-import React from "react";
-import { StyledEngineProvider } from '@mui/material/styles';
+import React from "react"
+import { StyledEngineProvider } from '@mui/material/styles'
 
-import { Provider } from 'react-redux';
+import { Provider } from 'react-redux'
 
-import {store} from './store/store.js';
+import {store} from './store/store.js'
 
-import { AppRoutes } from './AppRoutes';
+import { AppRoutes } from './AppRoutes'
 
 export function App() {
   return (

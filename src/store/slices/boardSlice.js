@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { createCards, fetchBoardData, createLists } from "../actions/boardAction"
+import { createCard, fetchBoardData, createList } from "../actions/boardAction"
 
 const initialState = {
     fetchLists: false,
     error: {},
-    lists: []
+    lists: [],
+    cards: []
 }
 
 const boardSlice = createSlice({
@@ -12,32 +13,41 @@ const boardSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [createCards.pending]: (state) => {
+        [createCard.pending]: (state) => {
             state.error = {}
         },
-        [createCards.fulfilled]: (state, { payload }) => {
-            state.card = [...state.card, payload]
+        [createCard.fulfilled]: (state, { payload }) => {
+            state.cards = [...state.cards, payload]
         },
-        [createCards.rejected]: (state, {payload}) => {
+        [createCard.rejected]: (state, {payload}) => {
             state.error = payload
         },
         [fetchBoardData.pending]: (state) => {
             state.fetchLists = true
+            state.fetchCards = true
         },
         [fetchBoardData.fulfilled]: (state, { payload }) => {
+            const { lists, cards } = payload
+            
             state.fetchLists = false
-            state.lists = payload.lists
+            state.fetchCards = false
+
+            state.lists = lists.map(list => ({
+                ...list, 
+                cards: cards.filter((card) => card.list === list.slug)  
+            }))
         },
         [fetchBoardData.rejected]: (state) => {
             state.fetchLists = false
+            state.fetchCards = false
         },
-        [createLists.pending]: (state) => {
+        [createList.pending]: (state) => {
             state.error = {}
         },
-        [createLists.fulfilled]: (state, { payload }) => {
-            state.lists = [...state.lists, payload]
+        [createList.fulfilled]: (state, { payload }) => {
+            state.lists = [...state.lists, {...payload, cards: []}]
         },
-        [createLists.rejected]: (state, {payload}) => {
+        [createList.rejected]: (state, {payload}) => {
             state.error = payload
         }
     }

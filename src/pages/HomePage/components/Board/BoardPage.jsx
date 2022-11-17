@@ -1,59 +1,66 @@
 import './BoardPage.sass'
 
-import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from "react-router-dom"
 
 import { fetchBoardData } from '../../../../store/actions/boardAction.js'
 
 import { Toolbar } from '../../../../ui/Toolbar/ToolBar.jsx'
-import { Lists } from "./Lists.jsx"
+import { List } from './List/List'
+import { AddList } from './AddList'
 
+import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
 
-export const BoardPage = () => {
-    const [open, setOpen] = useState(false)
+export const BoardPage = ({handleAddCard, handleAddList, name}) => {
+    const { boardSlug } = useParams()
 
     const dispatch = useDispatch()
-    
+
+    const lists = useSelector((state) => state.board.lists)
+
+    const { error } = useSelector((state) => state.board)
+
     useEffect(() => {
-        dispatch(fetchBoardData({boardSlug: slug}))
+        dispatch(fetchBoardData({boardSlug}))
     }, [dispatch])
 
-    const { slug } = useParams()  
-
-    const handleClickOpen = () => {
-      setOpen(true)
-    }
-    
-    const handleClose = () => {
-      setOpen(false)
+    const handleListTitleOnChange = (newTitle, listSlug) => {
+        console.log("Send updated title", newTitle, listSlug)
     }
 
     return (
         <>
             <Toolbar />
-            <div className='board-content'>
-                <Lists />
-                {open 
-                    ? (       
-                        <Box component="span" sx={{ p: 2, border: '1px dashed grey' }}>
-                        <TextField label="Enter list title" variant="outlined" />
-                        <Button>Create</Button>
-                        <Button onClick={handleClose}> Cancel </Button>      
-                        </Box> 
-                    ):(
-                        <Button 
-                            variant="outlined" 
-                            className='button-add' 
-                            onClick={handleClickOpen}
-                        > 
-                        Add list 
-                        </Button>
-                )}
-            </div>
+            <Box sx={{ flexGrow: 1 }} className='board-content'>
+            <Grid 
+                container
+                direction="row"
+                justifyContent="flex-start"
+                alignItems="flex-start"
+                className='lists-content'
+            >
+                    {lists.map(({slug: listSlug, name: listName, cards, board: boardSlug}) => 
+                        <List
+                            key={listSlug}
+                            slug={listSlug} 
+                            name={listName} 
+                            cards={cards}
+                            error={error} 
+                            board={boardSlug} 
+                            handleTitleOnChange={handleListTitleOnChange}
+                            handleAddCard={handleAddCard}
+                        />
+                    )}
+                    <AddList
+                        boardSlug={boardSlug} 
+                        name={name}
+                        error={error} 
+                        handleAddList={handleAddList}
+                    />
+                </Grid>
+            </Box>
         </>
     )
 }

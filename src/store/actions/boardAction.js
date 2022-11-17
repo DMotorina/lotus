@@ -38,22 +38,18 @@ export const fetchBoardData = createAsyncThunk(
         const lists = await fetchLists(boardSlug)
         const cards = await fetchCards(boardSlug)
 
-        const newLists = lists.map(list => ({
-            ...list, 
-            cards: cards.filter((card) => card.list === list.slug)
-        }))
+        // const newLists = lists.map(list => ({
+        //     ...list, 
+        //     cards: cards.filter((card) => card.list === list.slug)
+        // }))
 
-        return {
-            // + board info
-            lists: newLists
-        }
+        return {lists, cards}
     }
 )
 
-export const createCards = createAsyncThunk(
-    'board/createCards',
+export const createCard = createAsyncThunk(
+    'board/createCard',
     async ({name, description, list}, {rejectWithValue}) => {
-
         try {
             const resonse = await httpClient.post(
                 '/api/cards/',
@@ -67,17 +63,17 @@ export const createCards = createAsyncThunk(
     }
 )
 
-export const createLists = createAsyncThunk(
-    'board/createLists',
+export const createList = createAsyncThunk(
+    'board/createList',
     async ({slug, name, board}, {rejectWithValue}) => {
-
         try {
-            const resonse = await httpClient.post(
+            const response = await httpClient.post(
                 '/api/lists/',
                 {slug, name, board},
                 config
             )
-            return resonse.data
+            // console.log("--response", response.data, Array.isArray(response.data))
+            return response.data
         } catch (error) {
             return rejectWithValue(error.response.data)
         }

@@ -18,7 +18,7 @@ export const AppRoutes = () => {
                     </Route>
                     <Route element={<PrivateOutlet />} >
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/board/:slug" element={<BoardPage />} />
+                        <Route path="/board/:boardSlug" element={<BoardPage />} />
                     </Route>
                 </Route>
             </Routes>

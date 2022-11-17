@@ -12,7 +12,7 @@ export const BoardCard = ({name, onClick}) => {
             onClick={() => onClick()}
             className="card-style"
         >
-            <CardActionArea sx={{width: '100%', height: '100%'}}>
+            <CardActionArea sx={{width: '100%', height: '100%', fontFamily: 'Times New Roman'}}>
                 <CardContent>
                     <Typography variant="h5" component="div">{name}</Typography>
                 </CardContent>

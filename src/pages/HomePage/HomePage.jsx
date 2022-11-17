@@ -10,6 +10,9 @@ import { Toolbar } from '../../ui/Toolbar/ToolBar.jsx'
 import { BoardCard } from './components/Dashboards/BoardCard/BoardCard.jsx'
 import { CreateBoard } from './components/Dashboards/CreateBoard/CreateBoard.jsx'
 
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+
 export const HomePage = () => {
     const navigate = useNavigate()
 
@@ -29,16 +32,24 @@ export const HomePage = () => {
     return (
         <>
             <Toolbar />
-            <div className='home-page-content'>
-                {boards.map(({slug, name}) => (
-                    <BoardCard 
-                        key={slug}
-                        name={name}
-                        onClick={() => navigate(`/board/${slug}`)}
-                    />
-                ))}
-                <CreateBoard />
-            </div>
+            <Box sx={{ flexGrow: 1 }} className='home-page-content'>
+                <Grid 
+                    container
+                    direction="row"
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                    className='dashboards-content'
+                >
+                    {boards.map(({slug, name}) => (
+                        <BoardCard 
+                            key={slug}
+                            name={name}
+                            onClick={() => navigate(`/board/${slug}`)}
+                        />
+                    ))}
+                    <CreateBoard />
+                </Grid>
+            </Box>
         </>
     )
 }

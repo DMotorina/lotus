@@ -19,7 +19,7 @@ export const Toolbar = () => {
   }, [dispatch])
 
   return (
-    <AppBar style={{ height: '55px' }}>
+    <AppBar style={{ height: '55px', background: '#74A9BE' }}>
       <MUToolbar>
         <LogoToolbar />
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} />

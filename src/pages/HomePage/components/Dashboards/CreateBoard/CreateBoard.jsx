@@ -1,3 +1,5 @@
+import '../../../HomePage.sass'
+
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -41,7 +43,13 @@ export const CreateBoard = () => {
 
   return (
     <>
-      <Button variant="outlined" onClick={handleClickOpen}> Create board </Button>
+      <Button 
+        variant="outlined" 
+        onClick={handleClickOpen}
+        className="create-board-button"
+      > 
+        Create board 
+      </Button>
       <FormCreateBoard 
         error={error} 
         open={open} 
