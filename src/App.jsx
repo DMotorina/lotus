@@ -1,9 +1,9 @@
 import React from "react"
-import { StyledEngineProvider } from '@mui/material/styles'
-
 import { Provider } from 'react-redux'
 
-import {store} from './store/store.js'
+import { store } from '../src/features/store/store'
+
+import { StyledEngineProvider } from '@mui/material/styles'
 
 import { AppRoutes } from './AppRoutes'
 
