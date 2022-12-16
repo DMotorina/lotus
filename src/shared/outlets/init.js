@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import { checkAuth } from '../store/actions/userActions'
+import { checkAuth } from '../../features/login/userActions'
 
 export const InitOutlet = () => {
   const dispatch = useDispatch()

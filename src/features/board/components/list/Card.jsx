@@ -3,8 +3,8 @@ import '../../BoardPage.sass'
 import { useState } from 'react'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 
-import { CardEditForm } from './components/CardEditForm'
-import { CardEditModal } from './components/CardEditModal'
+import { CardEditForm } from './card/CardEditForm'
+import { CardEditModal } from './card/CardEditModal'
 
 import MUList from '@mui/material/List'
 

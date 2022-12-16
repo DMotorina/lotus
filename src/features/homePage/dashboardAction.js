@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { httpClient } from '../../utils/httpClient'
+import { httpClient } from '../../shared/utils/httpClient'
 
 const config = {
     headers: {

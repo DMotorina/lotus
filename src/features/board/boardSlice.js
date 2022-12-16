@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { createCard, fetchBoardData, createList } from "../actions/boardAction"
+import { createCard, fetchBoardData, createList } from "./boardAction"
 
 const initialState = {
     fetchLists: false,
@@ -12,17 +12,25 @@ const boardSlice = createSlice({
     name: 'board',
     initialState,
     reducers: {
-        runDasha: (state, {payload}) => {
-            // EXAMPLE:
-            // state.lists = [state.lists[2], state.lists[0], state.lists[1]]
+        dragToList: (state, { payload: {fromIndex, toIndex} }) => {
+            if(fromIndex === toIndex) return
+            const [movedItem] = state.lists.splice(fromIndex, 1)
+            state.lists.splice(toIndex, 0, movedItem)
+        },
+        dragToCard: (state, { payload: {fromIndex, toIndex, fromList, toList} }) => {
+            console.log({fromIndex, toIndex, fromList, toList})
+            // if(fromIndex === toIndex) return
+            const [movedCard] = state.lists[Number(fromList)].cards.splice(fromIndex, 1)
+            state.lists[Number(fromList)].cards.splice(toIndex, 0, movedCard)
         }
     },
     extraReducers: {
         [createCard.pending]: (state) => {
             state.error = {}
         },
-        [createCard.fulfilled]: (state, { payload }) => {
-            state.cards = [...state.cards, payload]
+        [createCard.fulfilled]: (state, { payload, boardSlug }) => {
+            state.lists = [...state.lists, payload]
+            console.log("state.lists", state.lists.cards)
         },
         [createCard.rejected]: (state, {payload}) => {
             state.error = payload
@@ -58,5 +66,5 @@ const boardSlice = createSlice({
     }
 })
 
-export const { runDasha } = boardSlice.actions
+export const { dragToList, dragToCard } = boardSlice.actions
 export default boardSlice.reducer

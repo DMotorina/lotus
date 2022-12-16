@@ -3,7 +3,7 @@ import '../../BoardPage.sass'
 import { useState } from "react"
 import { useDispatch } from 'react-redux'
 
-import { createCard } from '../../../store/actions/boardAction'
+import { createCard } from '../../boardAction'
 
 import { CreateCard } from "./CreateCard"
 

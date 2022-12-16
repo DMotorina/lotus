@@ -2,7 +2,7 @@ import '../BoardPage.sass'
 
 import { useState } from 'react'
 
-import { CreateList } from './CreateList'
+import { CreateList } from './list/CreateList'
 
 import Button from '@mui/material/Button'
 

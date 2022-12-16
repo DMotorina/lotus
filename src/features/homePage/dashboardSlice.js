@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-import { loadingBoards, createBoards } from "../actions/dashboardAction"
+import { loadingBoards, createBoards } from "./dashboardAction"
 
 const initialState = {
     loadingBoard: false,

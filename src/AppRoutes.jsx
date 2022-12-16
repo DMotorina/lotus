@@ -1,12 +1,12 @@
 import React from "react"
 import { Route, Routes, BrowserRouter } from "react-router-dom"
 
-import { AuthOutlet } from "../src/features/outlets/auth"
-import { InitOutlet } from "../src/features/outlets/init"
-import { PrivateOutlet } from "../src/features/outlets/private"
-import { Login } from "./features/Login/Login"
-import { HomePage } from "./features/HomePage/HomePage"
-import { BoardPage } from "./features/Board/BoardPage"
+import { AuthOutlet } from "./shared/outlets/auth"
+import { InitOutlet } from "./shared/outlets/init"
+import { PrivateOutlet } from "./shared/outlets//private"
+import { Login } from "./features/login/Login"
+import { HomePage } from "./features/homePage/HomePage"
+import { BoardPage } from "./features/board/BoardPage"
 
 export const AppRoutes = () => {
     return (

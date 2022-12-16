@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from "react-router-dom"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
-import { fetchBoardData } from '../store/actions/boardAction'
-import { createList } from '../store/actions/boardAction'
-import { runDasha } from '../store/slices/boardSlice'
+import { fetchBoardData } from './boardAction'
+import { createList } from './boardAction'
+import { dragToList, dragToCard } from './boardSlice'
 
-import { Toolbar } from '../../ui/Toolbar/ToolBar'
-import { List } from './List/List'
+import { Toolbar } from '../../shared/ui/Toolbar/ToolBar'
+import { List } from './components/List'
 import { AddList } from './components/AddList'
 
 import Box from '@mui/material/Box'
@@ -43,27 +43,32 @@ export const BoardPage = ({handleAddCard, name}) => {
         dispatch(createList({name: text, board: boardSlug}))
     }
 
-    const onDragEnd = useCallback((result) => {
+    const onDragEndList = useCallback((result) => {
         const {type: drugType} = result
-        if (drugType !== "Lists") return;
 
-        const fromIndex = result.source.index
-        const toIndex = result.destination.index
+        if (drugType === "Lists") {
+            dispatch(dragToList({fromIndex: result.source.index, toIndex: result.destination.index}))
+        }
 
-        // console.log(fromIndex, toIndex)
-        dispatch(runDasha({fromIndex, toIndex}))
+        if (drugType === "Cards") {
+            dispatch(dragToCard({
+                fromIndex: result.source.index, 
+                toIndex: result.destination.index, 
+                fromList: result.source.droppableId,
+                toList: result.destination.droppableId
+            }))
+        }
     }, [])
-    
 
     return (
         <>
             <Toolbar />
-            <DragDropContext onDragEnd={onDragEnd}>
+            <DragDropContext onDragEnd={onDragEndList}>
                 <Droppable droppableId="DIlists" type="Lists" direction="horizontal">
-                    {(provided, snapshot) => (
+                    {(provided) => (
                         <Box 
                             className="ourList" 
-                            sx={{flexGrow: 1, backgroundColor: snapshot.isDragging ? 'pink' : null}}
+                            sx={{flexGrow: 1}}
                             {...provided.droppableProps} 
                             ref={provided.innerRef}
                         >
@@ -92,6 +97,7 @@ export const BoardPage = ({handleAddCard, name}) => {
                                                     handleTitleOnChange={handleListTitleOnChange}
                                                     handleAddCard={handleAddCard}
                                                     provided={provided}
+                                                    listIndex={index}
                                                 />
                                             )}
                                         </Draggable>

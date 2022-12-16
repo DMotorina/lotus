@@ -4,9 +4,9 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { loadingBoards } from '../store/actions/dashboardAction'
+import { loadingBoards } from './dashboardAction'
 
-import { Toolbar } from '../../ui/Toolbar/ToolBar'
+import { Toolbar } from '../../shared/ui/Toolbar/ToolBar'
 import { BoardCard } from './components/BoardCard'
 import { CreateBoard } from './components/CreateBoard'
 
