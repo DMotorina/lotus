@@ -1,12 +1,12 @@
-import '../BoardPage.sass'
+import '../style.sass'
 
 import { useState } from 'react'
 
-import { CreateList } from './list/CreateList'
+import { ListForm } from './components/ListForm'
 
 import Button from '@mui/material/Button'
 
-export const AddList = ({
+export const CreateList = ({
     text,
     boardSlug, 
     error, 
@@ -28,7 +28,7 @@ export const AddList = ({
         <>
             {openForm 
                 ? (       
-                    <CreateList
+                    <ListForm
                         name={text}
                         boardSlug={boardSlug} 
                         error={error} 
@@ -38,7 +38,7 @@ export const AddList = ({
                     />
                 ):(
                     <Button
-                        className='AddList__button'  
+                        className="AddList__button"  
                         variant="outlined" 
                         onClick={handlekOpenCreateForm}
                     > 

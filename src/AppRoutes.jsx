@@ -5,8 +5,8 @@ import { AuthOutlet } from "./shared/outlets/auth"
 import { InitOutlet } from "./shared/outlets/init"
 import { PrivateOutlet } from "./shared/outlets//private"
 import { Login } from "./features/login/Login"
-import { HomePage } from "./features/homePage/HomePage"
-import { BoardPage } from "./features/board/BoardPage"
+import { Home } from "./features/home/Home"
+import { Board } from "./features/board/Board"
 
 export const AppRoutes = () => {
     return (
@@ -17,8 +17,8 @@ export const AppRoutes = () => {
                         <Route path="/login" element={<Login />} />
                     </Route>
                     <Route element={<PrivateOutlet />} >
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/board/:boardSlug" element={<BoardPage />} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/board/:boardSlug" element={<Board />} />
                     </Route>
                 </Route>
             </Routes>

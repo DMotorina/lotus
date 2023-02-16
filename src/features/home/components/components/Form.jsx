@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 
-export const FormCreateBoard = ({
+export const Form = ({
     open,
     handleClose, 
     text,  
@@ -17,7 +17,7 @@ export const FormCreateBoard = ({
         
     return (
         <Dialog open={open} onClose={handleClose}>
-            <DialogTitle> Board's name </DialogTitle>
+            <DialogTitle>Board's name</DialogTitle>
             <DialogContent>
                 <DialogContentText>
                     Give name your board
@@ -35,8 +35,8 @@ export const FormCreateBoard = ({
                     />       
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}> Cancel </Button>
-                <Button onClick={() => handleAdd()}> Create </Button>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={() => handleAdd()}>Create</Button>
             </DialogActions>
       </Dialog>
     )

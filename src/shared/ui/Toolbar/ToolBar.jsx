@@ -1,7 +1,7 @@
 import { LogoToolbar } from './LogoToolbar'
 import { AvatarToolbar } from './AvatarToolbar'
 
-import { logout } from "../../../features/login/userActions"
+import { logout } from "../../../features/login/actions"
 
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'

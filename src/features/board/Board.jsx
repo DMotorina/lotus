@@ -1,22 +1,22 @@
-import './BoardPage.sass'
+import './style.sass'
 
 import { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from "react-router-dom"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
-import { fetchBoardData } from './boardAction'
-import { createList } from './boardAction'
-import { dragToList, dragToCard } from './boardSlice'
+import { fetchBoardData } from './action'
+import { createList } from './action'
+import { dragToList, dragToCard } from './slice'
 
 import { Toolbar } from '../../shared/ui/Toolbar/ToolBar'
-import { List } from './components/List'
-import { AddList } from './components/AddList'
+import { Lists } from './components/Lists'
+import { CreateList } from './components/CreateList'
 
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 
-export const BoardPage = ({handleAddCard, name}) => {
+export const Board = ({handleAddCard, name}) => {
     const lists = useSelector((state) => state.board.lists)
 
     const dispatch = useDispatch()
@@ -86,7 +86,7 @@ export const BoardPage = ({handleAddCard, name}) => {
                                             index={index}
                                         >
                                             {(provided) => (
-                                                <List
+                                                <Lists
                                                     key={listSlug}
                                                     className="Board"
                                                     name={listName} 
@@ -104,7 +104,7 @@ export const BoardPage = ({handleAddCard, name}) => {
                                     )
                                 })}
                                 {provided.placeholder}
-                                <AddList
+                                <CreateList
                                     name={name}
                                     boardSlug={boardSlug} 
                                     error={error}

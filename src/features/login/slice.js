@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { login, checkAuth, logout } from "./userActions"
+import { login, checkAuth, logout } from "./actions"
 
 const initialState = {
     isAuthChecked: false,

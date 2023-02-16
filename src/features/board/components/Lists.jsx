@@ -1,18 +1,18 @@
-import '../BoardPage.sass'
+import '../style.sass'
 
 import { useState, forwardRef, useCallback } from "react"
 import { useDispatch } from 'react-redux'
 
 // import { dragToCard } from '../boardSlice'
 
-import { ListEditForm } from "./list/ListEditForm"
-import { Card } from "./list/Card"
-import { AddCard } from "./list/AddCard"
+import { ListEdit } from "./components/ListEdit"
+import { Cards } from "./components/Cards"
+import { CreateCard } from "./components/CreateCard"
 
 import MUList from '@mui/material/List'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
-export const List = forwardRef((
+export const Lists = forwardRef((
     {
         provided,
         name,
@@ -59,7 +59,7 @@ export const List = forwardRef((
                             {...provided.droppableProps} 
                             ref={provided.innerRef}
                         >
-                            <ListEditForm 
+                            <ListEdit 
                                 name={name}
                                 listSlug={listSlug} 
                                 openTitle={openTitle}
@@ -75,7 +75,7 @@ export const List = forwardRef((
                                         index={index}
                                     >
                                         {(cardProvided) => (
-                                            <Card
+                                            <Cards
                                                 key={cardSlug}
                                                 name={cardName}
                                                 slug={cardSlug} 
@@ -91,7 +91,7 @@ export const List = forwardRef((
                         </div>
                     )}
                 </Droppable>
-            <AddCard 
+            <CreateCard 
                 listSlug={listSlug}
                 name={name}
                 error={error}  

@@ -1,4 +1,4 @@
-import '../../../BoardPage.sass'
+import '../../../style.sass'
 
 import { useState, useEffect } from 'react'
 
@@ -34,7 +34,7 @@ export const CardEditForm = ({
         <>
         {openForm 
             ? (
-                <Box sx={{width: '100%', height: '100%', zIndex: '1'}}>
+                <Box sx={{width: "100%", height: "100%", zIndex: "1"}}>
                     <TextField
                         maxRows={4}
                         value={value}
@@ -49,9 +49,9 @@ export const CardEditForm = ({
                     </Button>
                 </Box>
             ) : (
-                <Box sx={{width: '100%', display: 'flex'}}>
+                <Box sx={{width: "100%", display: "flex"}}>
                     <Typography
-                        className='Card__typography' 
+                        className="Card__typography" 
                         onClick={handleOpenModal}
                     >
                         {value} 

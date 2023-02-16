@@ -1,8 +1,8 @@
-import '../Login.sass'
+import '../style.sass'
 
 import { useState, useCallback } from "react"
 
-export const LoginForm = ({onSubmit}) => {
+export const Form = ({onSubmit}) => {
     const [email, setEmail] = useState("")
     const [password, SetPassword] = useState("")
 
@@ -26,7 +26,7 @@ export const LoginForm = ({onSubmit}) => {
                 type="email" 
                 placeholder="Enter email"
                 required
-                email = {email}
+                email={email}
                 onChange={handleEmailChange}
             />
             <input
@@ -35,13 +35,13 @@ export const LoginForm = ({onSubmit}) => {
                 type="password" 
                 placeholder="Enter password"
                 required
-                password = {password}
+                password={password}
                 onChange={handlePasswordChange}
             />
             <button
                 className="LoginForm__button"
                 type="button"
-                onClick={ () => handleSubmit() }
+                onClick={() => handleSubmit()}
             >
                 Submit
             </button>

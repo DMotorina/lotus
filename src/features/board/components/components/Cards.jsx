@@ -1,14 +1,14 @@
-import '../../BoardPage.sass'
+import '../../style.sass'
 
 import { useState } from 'react'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 
-import { CardEditForm } from './card/CardEditForm'
-import { CardEditModal } from './card/CardEditModal'
+import { CardEditForm } from './components/CardEditForm'
+import { CardEditModal } from './components/CardEditModal'
 
 import MUList from '@mui/material/List'
 
-export const Card = ({name, listSlug, provided = null}) => {
+export const Cards = ({name, listSlug, provided = null}) => {
     const [openForm, setOpenForm] = useState(false)
     const [openModal, setOpenModal] = useState(false)
 

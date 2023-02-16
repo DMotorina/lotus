@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { createCard, fetchBoardData, createList } from "./boardAction"
+import { createCard, fetchBoardData, createList } from "./action"
 
 const initialState = {
     fetchLists: false,
@@ -30,7 +30,6 @@ const boardSlice = createSlice({
         },
         [createCard.fulfilled]: (state, { payload, boardSlug }) => {
             state.lists = [...state.lists, payload]
-            console.log("state.lists", state.lists.cards)
         },
         [createCard.rejected]: (state, {payload}) => {
             state.error = payload

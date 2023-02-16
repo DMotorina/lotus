@@ -1,19 +1,19 @@
-import './HomePage.sass'
+import './style.sass'
 
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { loadingBoards } from './dashboardAction'
+import { loadingBoards } from './action'
 
 import { Toolbar } from '../../shared/ui/Toolbar/ToolBar'
-import { BoardCard } from './components/BoardCard'
-import { CreateBoard } from './components/CreateBoard'
+import { Cards } from './components/Cards'
+import { CreateCard } from './components/CreateCard'
 
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 
-export const HomePage = () => {
+export const Home = () => {
     const navigate = useNavigate()
 
     const boards = useSelector((state) => state.dashboard.list)
@@ -32,22 +32,22 @@ export const HomePage = () => {
     return (
         <>
             <Toolbar />
-            <Box sx={{ flexGrow: 1 }} className='HomePage'>
+            <Box sx={{ flexGrow: 1 }} className="HomePage">
                 <Grid
-                    className='HomePage__content' 
+                    className="HomePage__content" 
                     container
                     direction="row"
                     justifyContent="flex-start"
                     alignItems="flex-start"
                 >
                     {boards.map(({slug, name}) => (
-                        <BoardCard 
+                        <Cards 
                             key={slug}
                             name={name}
                             onClick={() => navigate(`/board/${slug}`)}
                         />
                     ))}
-                    <CreateBoard />
+                    <CreateCard />
                 </Grid>
             </Box>
         </>

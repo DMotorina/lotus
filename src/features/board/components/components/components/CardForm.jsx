@@ -1,11 +1,11 @@
-import '../../BoardPage.sass'
+import '../../../style.sass'
 
 import TextField from '@mui/material/TextField'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CloseIcon from '@mui/icons-material/Close'
 
-export const CreateCard = ({
+export const CardForm = ({
     listSlug, 
     name, 
     error,
@@ -15,9 +15,9 @@ export const CreateCard = ({
     }) => {
         
     return (
-        <Box className='CreateCard' component="span" list={listSlug}>
+        <Box className="CreateCard" component="span" list={listSlug}>
             <TextField
-                className='CreateCard__textfield' 
+                className="CreateCard__textfield" 
                 variant="filled"   
                 label="Enter card title"
                 multiline
@@ -32,7 +32,7 @@ export const CreateCard = ({
                     Create card
                 </Button>
             <Button
-                className='CreateCard__button--cancel' 
+                className="CreateCard__button--cancel" 
                 onClick={handleClose} 
             > 
                 <CloseIcon /> 

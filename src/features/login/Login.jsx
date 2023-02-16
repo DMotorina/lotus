@@ -1,12 +1,12 @@
-import "./Login.sass"
+import "./style.sass"
 
 import { useCallback } from "react"
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from "react-router-dom"
 
-import { login } from "./userActions"
+import { login } from "./actions"
 
-import { LoginForm } from "./components/LoginForm"
+import { Form } from "./components/Form"
 
 import Box from '@mui/material/Box'
 
@@ -26,10 +26,16 @@ export const Login = () => {
     return (
         <Box className="Login">
             <Link to="/login">
-                <img className="Login__login" src="Lotus-logo.svg" width="200" height="250" />
+                <img 
+                    className="Login__login" 
+                    src="Lotus-logo.svg" 
+                    width="200" 
+                    height="250" 
+                    alt="Logo"
+                />
             </Link>
             {error ? <p className="error-message"> {error} </p> : null}
-            <LoginForm onSubmit={onSubmit} />
+            <Form onSubmit={onSubmit} />
         </Box>
     )
 }

@@ -1,16 +1,16 @@
-import '../HomePage.sass'
+import '../style.sass'
 
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { createBoards } from "../dashboardAction"
+import { createBoards } from "../action"
 
-import { FormCreateBoard } from './FormCreateBoard'
+import { Form } from './components/Form'
 
 import Button from '@mui/material/Button'
 
-export const CreateBoard = () => {
+export const CreateCard = () => {
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
@@ -50,7 +50,7 @@ export const CreateBoard = () => {
       > 
         Create board 
       </Button>
-      <FormCreateBoard 
+      <Form 
         error={error} 
         open={open} 
         onChangeText={onChangeText} 

@@ -1,4 +1,4 @@
-import '../../../BoardPage.sass'
+import '../../../style.sass'
 
 import { useState, useEffect } from 'react'
 

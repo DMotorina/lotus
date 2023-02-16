@@ -1,15 +1,15 @@
-import '../../BoardPage.sass'
+import '../../style.sass'
 
 import { useState } from "react"
 import { useDispatch } from 'react-redux'
 
-import { createCard } from '../../boardAction'
+import { createCard } from '../../action'
 
-import { CreateCard } from "./CreateCard"
+import { CardForm } from "./components/CardForm"
 
 import Button from '@mui/material/Button'
 
-export const AddCard = ({error, listSlug}) => {
+export const CreateCard = ({error, listSlug}) => {
     const dispatch = useDispatch()
 
     const [open, setOpen] = useState(false)
@@ -36,7 +36,7 @@ export const AddCard = ({error, listSlug}) => {
         <>
             {open 
                 ? (       
-                    <CreateCard
+                    <CardForm
                         name={text}
                         listSlug={listSlug}
                         error={error} 
@@ -46,7 +46,7 @@ export const AddCard = ({error, listSlug}) => {
                     />
                 ):(
                     <Button
-                        className='AddCard__button'  
+                        className="AddCard__button"  
                         variant="outlined" 
                         onClick={handleClickOpen}
                     > 

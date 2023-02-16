@@ -1,11 +1,11 @@
-import '../../BoardPage.sass'
+import '../../style.sass'
 
 import { useState, useEffect } from 'react'
 
 import TextField from '@mui/material/TextField'
 import { Typography } from '@mui/material'
 
-export const ListEditForm = ({
+export const ListEdit = ({
     name: initialName, 
     listSlug, 
     onChange, 
@@ -29,7 +29,7 @@ export const ListEditForm = ({
             {openTitle 
                 ? (
                     <TextField
-                        className='ListEditForm__textfield'
+                        className="ListEditForm__textfield"
                         variant="filled"
                         maxRows={4}
                         value={value}
@@ -38,7 +38,7 @@ export const ListEditForm = ({
                     />
                 ) : (
                     <Typography
-                        className='ListEditForm__typography'
+                        className="ListEditForm__typography"
                         onClick={handleOpenTitle}
                     > 
                         {value} 
