@@ -48,6 +48,7 @@ export const Home = () => {
                         />
                     ))}
                     <CreateCard />
+                    <h1>Daria Daria</h1>
                 </Grid>
             </Box>
         </>
